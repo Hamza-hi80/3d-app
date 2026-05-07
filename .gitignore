@@ -1,0 +1,13 @@
+# mac
+.DS_Store
+
+# editor
+.vscode/
+.idea/
+
+# blender autosaves
+*.blend1
+*.blend2
+
+# logs
+*.log

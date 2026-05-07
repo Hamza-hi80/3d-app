@@ -1,0 +1,16 @@
+:root {
+  --pepsi-red: #E32934;
+  --pepsi-blue: #004B93;
+  --pepsi-navy: #002B5C;
+  --pepsi-white: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  background-color: var(--pepsi-white);
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+}
