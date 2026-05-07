@@ -9,6 +9,14 @@ body {
   margin: 0;
   background-color: var(--pepsi-white);
   font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* sticky footer */
+main {
+  flex: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
