@@ -1,4 +1,4 @@
-var scene, camera, renderer, clock, mixer, actions = [], mode, model;
+var scene, camera, renderer, clock, mixer, actions = [], mode, model, bottleShader;
 
 init();
 
@@ -85,11 +85,57 @@ function init() {
     }
   });
 
+  // shader
+  const vertSrc = `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `;
+  const fragSrc = `
+    uniform sampler2D labelTexture;
+    uniform float time;
+    varying vec2 vUv;
+    void main() {
+      vec4 base = texture2D(labelTexture, vUv);
+      // band
+      float bandPos = mod(time * 0.15, 1.4) - 0.2;
+      float band = smoothstep(0.06, 0.0, abs(vUv.y - bandPos));
+      gl_FragColor = vec4(base.rgb + vec3(band * 0.4), base.a);
+    }
+  `;
+
   // Load the glTF model
   const loader = new THREE.GLTFLoader();
   loader.load(assetPath + 'assets/models/pepsi_bottle.glb', function(gltf) {
     model = gltf.scene;
     scene.add(model);
+
+    // swap label slot with custom shader (no scene-light reaction on this slot)
+    // gltf splits multi-material meshes by primitive, so material can be array or single
+    model.traverse(function(child) {
+      if (!child.isMesh) return;
+      if (Array.isArray(child.material)) {
+        child.material.forEach(function(mat, i) {
+          if (mat.name === 'BottleLabel') {
+            bottleShader = new THREE.ShaderMaterial({
+              uniforms: { labelTexture: { value: mat.map }, time: { value: 0 } },
+              vertexShader: vertSrc,
+              fragmentShader: fragSrc
+            });
+            child.material[i] = bottleShader;
+          }
+        });
+      } else if (child.material && child.material.name === 'BottleLabel') {
+        bottleShader = new THREE.ShaderMaterial({
+          uniforms: { labelTexture: { value: child.material.map }, time: { value: 0 } },
+          vertexShader: vertSrc,
+          fragmentShader: fragSrc
+        });
+        child.material = bottleShader;
+      }
+    });
 
     // Set up animations
     mixer = new THREE.AnimationMixer(model);
@@ -110,8 +156,12 @@ function init() {
 
 function animate() {
   requestAnimationFrame(animate);
+  const dt = clock.getDelta();
   if (mixer) {
-    mixer.update(clock.getDelta());
+    mixer.update(dt);
+  }
+  if (bottleShader) {
+    bottleShader.uniforms.time.value += dt;
   }
   renderer.render(scene, camera);
 }
