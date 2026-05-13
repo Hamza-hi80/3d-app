@@ -2,7 +2,7 @@
 
 This is my 3D Web App for the Web 3D Applications module at Sussex (2026).
 
-The site shows three Pepsi family drinks (Pepsi bottle, 7Up can, Mirinda can) as 3D models you can rotate in the browser. Each product page has buttons to play an animation, toggle wireframe mode, and switch the lighting. I also added an About page where I wrote about the build process and testing.
+The site shows three soft drinks (Pepsi bottle, 7Up can, Mirinda can) as 3D models you can rotate in the browser. Each product page has buttons to play an animation, toggle wireframe mode, and switch the lighting. I also added an About page where I wrote about the build process and testing.
 
 ## What I used
 
