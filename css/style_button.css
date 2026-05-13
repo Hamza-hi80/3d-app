@@ -1,1 +1,70 @@
-/* button styles */
+/* button base */
+.btn {
+  border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+/* primary, pepsi red (Pop Cap) */
+.btn-primary {
+  background-color: var(--pepsi-red);
+  color: var(--pepsi-white);
+}
+
+.btn-primary:hover {
+  background-color: #C01F29;
+  color: var(--pepsi-white);
+}
+
+.btn-primary:active {
+  background-color: #A01A23;
+}
+
+/* success, 7up green (Open Can) */
+.btn-success {
+  background-color: #00873E;
+  color: var(--pepsi-white);
+}
+
+.btn-success:hover {
+  background-color: #006D31;
+  color: var(--pepsi-white);
+}
+
+.btn-success:active {
+  background-color: #005A28;
+}
+
+/* warning, mirinda orange (Crush) */
+.btn-warning {
+  background-color: #FF6B00;
+  color: var(--pepsi-white);
+}
+
+.btn-warning:hover {
+  background-color: #CC5500;
+  color: var(--pepsi-white);
+}
+
+.btn-warning:active {
+  background-color: #A84600;
+}
+
+/* secondary, navy (Wireframe, Lighting) */
+.btn-secondary {
+  background-color: var(--pepsi-navy);
+  color: var(--pepsi-white);
+}
+
+.btn-secondary:hover {
+  background-color: var(--pepsi-blue);
+  color: var(--pepsi-white);
+}
+
+.btn-secondary:active {
+  background-color: #001A3A;
+}
