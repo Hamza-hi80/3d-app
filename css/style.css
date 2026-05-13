@@ -129,6 +129,19 @@ main p {
   color: #555;
 }
 
+/* thumbnails (about page) */
+.thumbnail {
+  cursor: pointer;
+  max-width: 200px;
+  margin: 0.5rem;
+  border-radius: 4px;
+  transition: opacity 0.15s ease;
+}
+
+.thumbnail:hover {
+  opacity: 0.8;
+}
+
 /* hero (homepage) */
 .hero {
   background-color: var(--pepsi-white);
