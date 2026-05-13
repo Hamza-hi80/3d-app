@@ -40,6 +40,8 @@ function init() {
   // Open can button
   mode = 'closed';
   const btn = document.getElementById('btn');
+  const openAudio = new Audio('assets/audio/open.mp3');
+  openAudio.volume = 0.7;
   btn.addEventListener('click', function () {
     if (actions.length > 0) {
       actions.forEach(function (action) {
@@ -50,6 +52,8 @@ function init() {
         action.play();
       });
     }
+    openAudio.currentTime = 0;
+    openAudio.play();
   });
 
   // Wireframe toggle

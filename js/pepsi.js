@@ -40,6 +40,8 @@ function init() {
   // Pop cap button
   mode = 'closed';
   const btn = document.getElementById('btn');
+  const popSound = new Audio('assets/audio/pop.wav');
+  popSound.volume = 0.7;
   btn.addEventListener('click', function() {
     if (actions.length > 0) {
       actions.forEach(function(action) {
@@ -50,6 +52,8 @@ function init() {
         action.play();
       });
     }
+    popSound.currentTime = 0;
+    popSound.play();
   });
 
   // Wireframe toggle

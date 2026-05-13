@@ -40,6 +40,8 @@ function init() {
     // crush button
     mode = 'open';
     const btn = document.getElementById('btn');
+    const crushSound = new Audio('assets/audio/crunch.flac');
+    crushSound.volume = 0.7;
     btn.addEventListener('click', function() {
         if (actions.length > 0) {
             actions.forEach(function(action) {
@@ -50,6 +52,8 @@ function init() {
                 action.play();
             });
         }
+        crushSound.currentTime = 0;
+        crushSound.play();
     });
 
     // wireframe
