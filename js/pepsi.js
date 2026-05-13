@@ -12,7 +12,7 @@ function init() {
 
   // Create the scene
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x004B93);
+  scene.background = new THREE.Color(0xF5F5F5);
 
   // Set up the camera
   camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
@@ -100,9 +100,9 @@ function init() {
     void main() {
       vec4 base = texture2D(labelTexture, vUv);
       // band
-      float bandPos = mod(time * 0.15, 1.4) - 0.2;
+      float bandPos = mod(time * 0.25, 1.4) - 0.2;
       float band = smoothstep(0.06, 0.0, abs(vUv.y - bandPos));
-      gl_FragColor = vec4(base.rgb + vec3(band * 0.4), base.a);
+      gl_FragColor = vec4(base.rgb + vec3(band * 0.5), base.a);
     }
   `;
 
